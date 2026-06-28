@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAZRA | House Warming Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       FLOATING BACK BUTTON
+  ============================================================ -->
+  <button class="back-btn" id="backBtn" type="button" aria-label="Back to cover">
+    <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Back to Cover
+  </button>
+
+  <!-- ============================================================
+       MAIN WRAPPER
+  ============================================================ -->
+  <main class="wrapper" id="wrapper">
+
+    <!-- ============================================================
+         COVER PANEL
+    ============================================================ -->
+    <section class="cover closed" id="cover">
+
+      <!-- Overlay gradient -->
+      <div class="cover-overlay"></div>
+
+      <!-- Falling cherry blossom petals -->
+      <div class="petals" id="petals"></div>
+
+      <!-- Floral corner decorations (SVG) -->
+      <svg class="floral floral--tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 10 Q30 60 80 50 Q60 100 100 120 Q50 130 20 180" stroke="#c9a14a" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <path d="M10 10 Q50 30 60 80 Q100 60 130 100 Q110 110 80 150" stroke="#c9a14a" stroke-width="1" fill="none" opacity="0.5"/>
+        <circle cx="80" cy="50" r="5" fill="none" stroke="#c9a14a" stroke-width="1.2"/>
+        <circle cx="100" cy="120" r="4" fill="none" stroke="#c9a14a" stroke-width="1.2"/>
+        <circle cx="60" cy="80" r="3" fill="none" stroke="#c9a14a" stroke-width="1"/>
+        <path d="M78 46 Q83 38 88 46 Q83 54 78 46Z" fill="#c9a14a" opacity="0.4"/>
+        <path d="M98 116 Q103 108 108 116 Q103 124 98 116Z" fill="#c9a14a" opacity="0.35"/>
+        <path d="M40 10 C55 30 45 55 60 70" stroke="#c9a14a" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M10 40 C30 55 55 45 70 60" stroke="#c9a14a" stroke-width="1" fill="none" opacity="0.4"/>
+      </svg>
+
+      <svg class="floral floral--bl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 190 Q30 140 80 150 Q60 100 100 80 Q50 70 20 20" stroke="#c9a14a" stroke-width="1.5" fill="none" opacity="0.7"/>
+        <path d="M10 190 Q50 170 60 120 Q100 140 130 100 Q110 90 80 50" stroke="#c9a14a" stroke-width="1" fill="none" opacity="0.5"/>
+        <circle cx="80" cy="150" r="5" fill="none" stroke="#c9a14a" stroke-width="1.2"/>
+        <circle cx="100" cy="80" r="4" fill="none" stroke="#c9a14a" stroke-width="1.2"/>
+        <path d="M78 146 Q83 138 88 146 Q83 154 78 146Z" fill="#c9a14a" opacity="0.4"/>
+        <path d="M98 76 Q103 68 108 76 Q103 84 98 76Z" fill="#c9a14a" opacity="0.35"/>
+      </svg>
+
+      <!-- Hanging Lantern (SVG) -->
+      <div class="lantern" id="lantern" aria-hidden="true">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <!-- Chain/String -->
+          <line x1="30" y1="0" x2="30" y2="28" stroke="#c9a14a" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <!-- Top cap -->
+          <ellipse cx="30" cy="30" rx="14" ry="5" fill="#c9a14a"/>
+          <!-- Vertical ribs -->
+          <path d="M16 30 Q10 65 16 100" stroke="#c9a14a" stroke-width="1.5" fill="none"/>
+          <path d="M44 30 Q50 65 44 100" stroke="#c9a14a" stroke-width="1.5" fill="none"/>
+          <path d="M22 29 Q18 65 22 101" stroke="#c9a14a" stroke-width="1.2" fill="none"/>
+          <path d="M38 29 Q42 65 38 101" stroke="#c9a14a" stroke-width="1.2" fill="none"/>
+          <!-- Body fill with glow -->
+          <path d="M16 30 Q10 65 16 100 Q30 106 44 100 Q50 65 44 30 Q30 34 16 30Z" fill="url(#lg1)" opacity="0.85"/>
+          <!-- Horizontal bands -->
+          <line x1="11" y1="50" x2="49" y2="50" stroke="#c9a14a" stroke-width="0.8" opacity="0.6"/>
+          <line x1="11" y1="65" x2="49" y2="65" stroke="#c9a14a" stroke-width="0.8" opacity="0.6"/>
+          <line x1="11" y1="80" x2="49" y2="80" stroke="#c9a14a" stroke-width="0.8" opacity="0.6"/>
+          <!-- Outline -->
+          <path d="M16 30 Q10 65 16 100 Q30 106 44 100 Q50 65 44 30 Q30 34 16 30Z" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <!-- Bottom cap -->
+          <ellipse cx="30" cy="100" rx="14" ry="5" fill="#c9a14a"/>
+          <!-- Tassel -->
+          <line x1="30" y1="105" x2="30" y2="118" stroke="#c9a14a" stroke-width="1.5"/>
+          <ellipse cx="30" cy="120" rx="5" ry="3" fill="#c9a14a"/>
+          <!-- Glow light source -->
+          <ellipse cx="30" cy="65" rx="10" ry="12" fill="url(#glowCenter)" opacity="0.6"/>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffe080" stop-opacity="0.25"/>
+              <stop offset="50%" stop-color="#ffd060" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#ffb830" stop-opacity="0.2"/>
+            </linearGradient>
+            <radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fffbe0" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#ffd060" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </svg>
+        <!-- Warm glow behind lantern -->
+        <div class="lantern-glow"></div>
+      </div>
+
+      <!-- Cover Content -->
+      <div class="cover-content">
+
+        <p class="arabic-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+
+        <!-- House SVG icon -->
+        <div class="house-icon" aria-hidden="true">
+          <svg viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Roof -->
+            <path d="M8 55 L60 8 L112 55" stroke="#c9a14a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+            <!-- Chimney -->
+            <rect x="78" y="22" width="10" height="20" rx="1" stroke="#c9a14a" stroke-width="2.5"/>
+            <!-- Walls -->
+            <rect x="20" y="53" width="80" height="52" rx="2" stroke="#c9a14a" stroke-width="3"/>
+            <!-- Door -->
+            <path d="M49 105 L49 78 Q60 70 71 78 L71 105" stroke="#c9a14a" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- Windows -->
+            <rect x="27" y="64" width="16" height="14" rx="2" stroke="#c9a14a" stroke-width="2"/>
+            <rect x="77" y="64" width="16" height="14" rx="2" stroke="#c9a14a" stroke-width="2"/>
+            <!-- Window cross -->
+            <line x1="35" y1="64" x2="35" y2="78" stroke="#c9a14a" stroke-width="1.2"/>
+            <line x1="27" y1="71" x2="43" y2="71" stroke="#c9a14a" stroke-width="1.2"/>
+            <line x1="85" y1="64" x2="85" y2="78" stroke="#c9a14a" stroke-width="1.2"/>
+            <line x1="77" y1="71" x2="93" y2="71" stroke="#c9a14a" stroke-width="1.2"/>
+            <!-- Star on roof -->
+            <path d="M60 18 L62 24 L68 24 L63 28 L65 34 L60 30 L55 34 L57 28 L52 24 L58 24 Z" fill="#c9a14a" opacity="0.7"/>
+          </svg>
+        </div>
+
+        <h1 class="cover-title">House Warming</h1>
+        <h2 class="cover-subtitle">INVITATION</h2>
+
+        <!-- Decorative SVG divider -->
+        <svg class="svg-divider" viewBox="0 0 320 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="10" x2="120" y2="10" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M128 10 C134 4 140 10 146 10 C152 10 158 4 164 10" stroke="#c9a14a" stroke-width="1.5" fill="none"/>
+          <circle cx="160" cy="10" r="4" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <path d="M176 10 C182 4 188 10 194 10 C200 10 206 4 212 10" stroke="#c9a14a" stroke-width="1.5" fill="none"/>
+          <line x1="200" y1="10" x2="320" y2="10" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <p class="cover-tagline">We warmly invite you to celebrate<br>this special occasion.</p>
+
+        <button class="open-btn" id="openBtn">&#9829; OPEN INVITATION</button>
+
+        <div class="tap-hint">
+          <span class="tap-arrow">&#8593;</span>
+          <span>Tap to Open</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INVITATION PANEL (RIGHT)
+    ============================================================ -->
+    <section class="invitation hidden" id="invitation">
+      <div class="paper" id="paper">
+
+        <!-- Decorative border frame -->
+        <div class="paper-border"></div>
+
+        <!-- Subtle mosque watermark SVG -->
+        <svg class="watermark" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M200 60 Q200 20 200 20" stroke="#3d1a0a" stroke-width="2"/>
+          <circle cx="200" cy="15" r="5" fill="#3d1a0a"/>
+          <!-- Main dome -->
+          <path d="M140 120 Q140 60 200 60 Q260 60 260 120" stroke="#3d1a0a" stroke-width="2.5" fill="none"/>
+          <!-- Minarets -->
+          <rect x="90" y="90" width="18" height="80" rx="2" fill="none" stroke="#3d1a0a" stroke-width="2"/>
+          <path d="M90 90 Q99 70 108 90Z" fill="none" stroke="#3d1a0a" stroke-width="1.5"/>
+          <rect x="292" y="90" width="18" height="80" rx="2" fill="none" stroke="#3d1a0a" stroke-width="2"/>
+          <path d="M292 90 Q301 70 310 90Z" fill="none" stroke="#3d1a0a" stroke-width="1.5"/>
+          <!-- Body -->
+          <rect x="130" y="120" width="140" height="60" rx="2" fill="none" stroke="#3d1a0a" stroke-width="2"/>
+          <!-- Arches -->
+          <path d="M145 180 L145 150 Q155 135 165 150 L165 180" fill="none" stroke="#3d1a0a" stroke-width="1.5"/>
+          <path d="M180 180 L180 150 Q190 135 200 150 L200 180" fill="none" stroke="#3d1a0a" stroke-width="1.5"/>
+          <path d="M215 180 L215 150 Q225 135 235 150 L235 180" fill="none" stroke="#3d1a0a" stroke-width="1.5"/>
+          <!-- Ground -->
+          <line x1="60" y1="180" x2="340" y2="180" stroke="#3d1a0a" stroke-width="2"/>
+          <!-- Stars -->
+          <circle cx="99" cy="82" r="3" fill="#3d1a0a"/>
+          <circle cx="301" cy="82" r="3" fill="#3d1a0a"/>
+        </svg>
+
+        <!-- Mughal Arch (SVG) -->
+        <svg class="mughal-arch" viewBox="0 0 280 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 115 L20 55 Q20 10 140 10 Q260 10 260 55 L260 115" stroke="#c9a14a" stroke-width="2" fill="none"/>
+          <!-- Onion dome top -->
+          <path d="M120 10 Q140 -8 160 10" stroke="#c9a14a" stroke-width="2" fill="none"/>
+          <!-- Decorative keystone -->
+          <path d="M125 10 Q140 2 155 10 L150 20 Q140 14 130 20 Z" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <!-- Side pillars -->
+          <line x1="20" y1="55" x2="20" y2="115" stroke="#c9a14a" stroke-width="3"/>
+          <line x1="260" y1="55" x2="260" y2="115" stroke="#c9a14a" stroke-width="3"/>
+          <!-- Column caps -->
+          <rect x="12" y="50" width="16" height="8" rx="2" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <rect x="252" y="50" width="16" height="8" rx="2" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <!-- Column base -->
+          <rect x="12" y="110" width="16" height="8" rx="2" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <rect x="252" y="110" width="16" height="8" rx="2" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <!-- Inner arch filigree -->
+          <path d="M50 115 L50 65 Q50 30 140 30 Q230 30 230 65 L230 115" stroke="#c9a14a" stroke-width="1" fill="none" opacity="0.5"/>
+          <!-- Floral detail -->
+          <circle cx="140" cy="28" r="5" fill="none" stroke="#c9a14a" stroke-width="1.2"/>
+          <path d="M135 28 Q140 20 145 28 Q140 36 135 28Z" fill="#c9a14a" opacity="0.4"/>
+        </svg>
+
+        <!-- Bismillah -->
+        <h2 class="arabic-bismillah-inv">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h2>
+        <p class="translation">In the name of Allah, the Most Gracious, the Most Merciful</p>
+
+        <!-- Gold divider SVG -->
+        <svg class="gold-divider" viewBox="0 0 300 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="8" x2="108" y2="8" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M112 8 L119 2 L126 8 L119 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <circle cx="140" cy="8" r="5" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <circle cx="160" cy="8" r="3" fill="#c9a14a" opacity="0.7"/>
+          <path d="M174 8 L181 2 L188 8 L181 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <line x1="192" y1="8" x2="300" y2="8" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <!-- Hosts -->
+        <h2 class="host-name">MR. NIZAR PERINGADI</h2>
+        <p class="host-and">&amp;</p>
+        <h2 class="host-name">MRS. RAHMA VAIKILERI</h2>
+
+        <p class="location-city">&#128205; VADAKARA</p>
+
+        <!-- Gold divider -->
+        <svg class="gold-divider" viewBox="0 0 300 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="8" x2="108" y2="8" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M112 8 L119 2 L126 8 L119 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <circle cx="140" cy="8" r="5" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <circle cx="160" cy="8" r="3" fill="#c9a14a" opacity="0.7"/>
+          <path d="M174 8 L181 2 L188 8 L181 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <line x1="192" y1="8" x2="300" y2="8" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <p class="invite-text">
+          CORDIALLY INVITE YOUR<br>
+          GRACIOUS PRESENCE<br><br>
+          TO THE HOUSEWARMING CEREMONY<br>
+          OF OUR NEW HOME
+        </p>
+
+        <!-- House name -->
+        <h1 class="home-name">NAZRA</h1>
+
+        <!-- Gold ornamental divider -->
+        <svg class="gold-divider ornament" viewBox="0 0 300 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="15" x2="95" y2="15" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M100 15 Q108 5 116 15 Q108 25 100 15Z" fill="#c9a14a" opacity="0.6"/>
+          <path d="M120 15 Q128 5 136 15 Q128 25 120 15Z" fill="#c9a14a" opacity="0.5"/>
+          <circle cx="150" cy="15" r="6" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <circle cx="150" cy="15" r="2.5" fill="#c9a14a"/>
+          <path d="M164 15 Q172 5 180 15 Q172 25 164 15Z" fill="#c9a14a" opacity="0.5"/>
+          <path d="M184 15 Q192 5 200 15 Q192 25 184 15Z" fill="#c9a14a" opacity="0.6"/>
+          <line x1="205" y1="15" x2="300" y2="15" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <!-- Event date/time -->
+        <h3 class="event-day">THURSDAY</h3>
+        <p class="event-date">23 JULY 2026</p>
+        <p class="event-reception-label">Reception</p>
+        <p class="event-time">12:00 PM – 2:00 PM</p>
+
+        <!-- Countdown -->
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="countdown-box">
+            <span id="cd-days">00</span>
+            <small>Days</small>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-hours">00</span>
+            <small>Hours</small>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-mins">00</span>
+            <small>Mins</small>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-secs">00</span>
+            <small>Secs</small>
+          </div>
+        </div>
+        <p class="countdown-ended" id="countdownEnded" hidden>
+          The Housewarming Ceremony Has Begun
+        </p>
+
+        <!-- Gold divider -->
+        <svg class="gold-divider" viewBox="0 0 300 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="8" x2="108" y2="8" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M112 8 L119 2 L126 8 L119 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <circle cx="140" cy="8" r="5" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <circle cx="160" cy="8" r="3" fill="#c9a14a" opacity="0.7"/>
+          <path d="M174 8 L181 2 L188 8 L181 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <line x1="192" y1="8" x2="300" y2="8" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <!-- Dua -->
+        <p class="dua">
+          എല്ലാം കൈർ ആവാൻ<br>
+          അലാഹു താവ്ഫീഖ് ചെയ്യട്ടെ.<br>
+          ആമീൻ.
+        </p>
+
+        <!-- Location button -->
+        <a class="location-btn"
+           href="https://maps.app.goo.gl/UFE3xFDrgTRHHPBbA"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          VIEW LOCATION
+          <span class="location-sub">Tap to open in Google Maps</span>
+        </a>
+
+        <!-- QR Code -->
+        <p class="qr-label">SCAN TO LOCATE</p>
+        <div id="qrcode"></div>
+
+        <!-- Gold divider -->
+        <svg class="gold-divider" viewBox="0 0 300 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="8" x2="108" y2="8" stroke="#c9a14a" stroke-width="1"/>
+          <path d="M112 8 L119 2 L126 8 L119 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <circle cx="140" cy="8" r="5" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+          <circle cx="160" cy="8" r="3" fill="#c9a14a" opacity="0.7"/>
+          <path d="M174 8 L181 2 L188 8 L181 14 Z" fill="#c9a14a" opacity="0.6"/>
+          <line x1="192" y1="8" x2="300" y2="8" stroke="#c9a14a" stroke-width="1"/>
+        </svg>
+
+        <!-- Footer -->
+        <footer class="inv-footer">
+          <p class="footer-love">With Love &#9829;</p>
+          <h3 class="footer-from">RELATIVES &amp; FRIENDS</h3>
+          <svg class="footer-ornament" viewBox="0 0 160 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0" y1="10" x2="55" y2="10" stroke="#c9a14a" stroke-width="1"/>
+            <path d="M60 10 L65 4 L70 10 L65 16 Z" fill="#c9a14a" opacity="0.7"/>
+            <circle cx="80" cy="10" r="4" fill="none" stroke="#c9a14a" stroke-width="1.5"/>
+            <path d="M90 10 L95 4 L100 10 L95 16 Z" fill="#c9a14a" opacity="0.7"/>
+            <line x1="105" y1="10" x2="160" y2="10" stroke="#c9a14a" stroke-width="1"/>
+          </svg>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

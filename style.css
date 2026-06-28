@@ -1,0 +1,950 @@
+/* =============================================================
+   HOUSEWARMING INVITATION — style.css
+   01 Variables  02 Reset  03 Typography  04 Layout
+   05 Cover      06 Lantern  07 Floral  08 Petals
+   09 Invitation 10 Countdown  11 QR  12 Footer
+   13 Responsive 14 Animations
+============================================================= */
+
+/* -------------------------------------------------------------
+   01 VARIABLES
+------------------------------------------------------------- */
+:root {
+  --cover-bg:      #7d2a2a;
+  --paper:         #f5ede0;
+  --gold:          #c9a14a;
+  --gold-light:    #e8c97a;
+  --gold-dark:     #9e7530;
+  --text:          #3d1a0a;
+  --muted:         #7d5a3a;
+  --white:         #ffffff;
+  --shadow:        rgba(0, 0, 0, 0.28);
+  --transition:    0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-serif:    'Cormorant Garamond', Georgia, serif;
+  --font-display:  'Cinzel', Georgia, serif;
+  --font-arabic:   'Amiri', serif;
+  --open-duration: 0.62s;
+  --open-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------
+   02 RESET
+------------------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: var(--font-serif);
+  background: #1a0a05;
+  color: var(--text);
+  overflow: hidden;
+}
+
+body.invitation-open {
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+svg {
+  display: block;
+}
+
+/* -------------------------------------------------------------
+   03 TYPOGRAPHY
+------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.arabic-bismillah {
+  font-family: var(--font-arabic);
+  font-size: clamp(22px, 4vw, 36px);
+  color: var(--gold);
+  line-height: 1.9;
+  letter-spacing: 1px;
+}
+
+.arabic-bismillah-inv {
+  font-family: var(--font-arabic);
+  font-size: clamp(24px, 3.5vw, 40px);
+  color: var(--text);
+  line-height: 1.9;
+  margin-top: 16px;
+}
+
+.translation {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(13px, 1.6vw, 16px);
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 6px;
+}
+
+/* -------------------------------------------------------------
+   04 LAYOUT
+------------------------------------------------------------- */
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------------
+   05 COVER PANEL
+------------------------------------------------------------- */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 50px;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform var(--open-duration) var(--open-ease),
+    opacity var(--open-duration) var(--open-ease);
+  background:
+    radial-gradient(ellipse at top center, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(255, 200, 120, 0.06) 0%, transparent 45%),
+    linear-gradient(170deg, #922e2e 0%, #7d2a2a 40%, #6a2020 80%, #5a1818 100%);
+}
+
+.cover.closed,
+.cover.returning {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cover.leaving {
+  transform: translate3d(0, -5%, 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cover.away {
+  transform: translate3d(0, -8%, 0);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Vignette overlay */
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.35));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cover content */
+.cover-content {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  animation: fadeUpIn 1.5s ease both;
+}
+
+.cover-title {
+  font-size: clamp(36px, 4.5vw, 62px);
+  color: var(--white);
+  letter-spacing: 3px;
+  margin-top: 20px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cover-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.8vw, 20px);
+  color: var(--gold);
+  letter-spacing: 10px;
+  margin-top: 12px;
+}
+
+.svg-divider {
+  width: min(280px, 90%);
+  margin: 22px auto;
+  opacity: 0.85;
+}
+
+.cover-tagline {
+  color: rgba(255, 255, 255, 0.88);
+  font-style: italic;
+  font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.8;
+}
+
+/* Open button */
+.open-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 36px;
+  padding: 16px 52px;
+  border-radius: 100px;
+  font-size: clamp(13px, 1.4vw, 16px);
+  letter-spacing: 2px;
+  color: var(--cover-bg);
+  background: linear-gradient(155deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-dark) 100%);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(201, 161, 74, 0.3);
+  transition: transform 0.2s var(--open-ease);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.open-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-22deg) translate3d(-220%, 0, 0);
+  animation: btnShine 4s ease-in-out infinite;
+}
+
+.open-btn:hover {
+  transform: translate3d(0, -4px, 0) scale(1.03);
+}
+
+.open-btn:active,
+.open-btn.is-active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+  transition-duration: 0.08s;
+}
+
+/* Tap hint */
+.tap-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.tap-arrow {
+  font-size: 20px;
+  animation: arrowBounce 1.8s ease-in-out infinite;
+}
+
+/* House icon */
+.house-icon {
+  width: min(110px, 22vw);
+  margin: 26px auto 10px;
+}
+
+.house-icon svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(201, 161, 74, 0.35));
+}
+
+/* -------------------------------------------------------------
+   06 LANTERN
+------------------------------------------------------------- */
+.lantern {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate3d(-50%, 0, 0);
+  transform-origin: top center;
+  animation: lanternSwing 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.lantern-glow {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 80, 0.35) 0%, transparent 70%);
+  transform: translate3d(-50%, 0, 0);
+  animation: lanternGlow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   07 FLORAL CORNER SVGs
+------------------------------------------------------------- */
+.floral {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 3;
+  animation: floralPulse 8s ease-in-out infinite;
+}
+
+.floral--tl {
+  top: -10px;
+  left: -10px;
+}
+
+.floral--bl {
+  bottom: -10px;
+  left: -10px;
+}
+
+/* -------------------------------------------------------------
+   08 PETALS ENGINE
+------------------------------------------------------------- */
+.petals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.petal {
+  position: absolute;
+  top: -30px;
+  left: var(--petal-x, 50%);
+  width: var(--petal-size, 14px);
+  height: calc(var(--petal-size, 14px) * 0.72);
+  border-radius: 70% 30% 70% 30%;
+  opacity: 0;
+  animation: petalFall var(--petal-dur, 10s) linear infinite;
+  animation-delay: var(--petal-delay, 0s);
+  transform: rotate(var(--petal-spin, 0deg));
+}
+
+.petal--a { background: linear-gradient(135deg, #fddde8, #f8a4be); }
+.petal--b { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+.petal--c { background: linear-gradient(135deg, #fff0f5, #f9c0d0); }
+.petal--d { background: linear-gradient(135deg, #ffe4e8, #f4a0b0); }
+
+.petal::before {
+  content: '';
+  position: absolute;
+  inset: 20% 25%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* -------------------------------------------------------------
+   09 INVITATION PANEL
+------------------------------------------------------------- */
+.invitation {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--paper);
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity var(--open-duration) var(--open-ease),
+    transform var(--open-duration) var(--open-ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .invitation { scroll-behavior: smooth; }
+}
+
+.invitation.hidden {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.invitation.prewarm {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.invitation.revealing,
+.invitation.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.invitation.revealing {
+  pointer-events: none;
+  transition-delay: 0.08s;
+}
+
+.invitation.visible {
+  pointer-events: auto;
+}
+
+.invitation.hiding {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  pointer-events: none;
+  visibility: visible;
+}
+
+/* Parchment texture — on paper, not full viewport */
+.paper {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 50px 70px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(255, 240, 200, 0.5) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 90%, rgba(230, 200, 150, 0.4) 0%, transparent 40%),
+    linear-gradient(175deg, #fdf4e3 0%, #f5ede0 50%, #efe3cc 100%);
+}
+
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(160, 120, 60, 0.018) 2px,
+      rgba(160, 120, 60, 0.018) 4px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gold border frame */
+.paper-border {
+  position: absolute;
+  inset: 20px;
+  border: 1.5px solid var(--gold);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.paper-border::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 0.5px solid var(--gold);
+  opacity: 0.5;
+}
+
+/* Corner ornaments on border */
+.paper-border::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 0.5px solid rgba(201, 161, 74, 0.3);
+}
+
+/* Mosque watermark */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(380px, 90%);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mughal arch */
+.mughal-arch {
+  width: min(260px, 85%);
+  margin: 10px auto 0;
+}
+
+/* Hosts */
+.host-name {
+  font-size: clamp(20px, 2.8vw, 30px);
+  color: var(--text);
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+.host-and {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--gold);
+  margin: 6px 0;
+}
+
+.location-city {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.6vw, 16px);
+  letter-spacing: 4px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* Gold SVG divider */
+.gold-divider {
+  width: min(280px, 85%);
+  margin: 28px auto;
+}
+
+/* Invite text */
+.invite-text {
+  font-size: clamp(12px, 1.5vw, 15px);
+  letter-spacing: 2.5px;
+  font-variant: small-caps;
+  line-height: 2;
+  color: var(--muted);
+}
+
+/* Home name */
+.home-name {
+  font-size: clamp(48px, 7vw, 88px);
+  color: var(--text);
+  letter-spacing: 8px;
+  margin: 16px 0 4px;
+  background: linear-gradient(160deg, var(--text) 0%, var(--gold-dark) 60%, var(--text) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.event-day {
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: var(--text);
+  letter-spacing: 6px;
+  margin-top: 10px;
+}
+
+.event-date {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: var(--text);
+  letter-spacing: 4px;
+  margin-top: 10px;
+}
+
+.event-reception-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.9vw, 20px);
+  color: var(--gold-dark);
+  letter-spacing: 3px;
+  margin-top: 18px;
+  text-transform: capitalize;
+}
+
+.event-date,
+.event-time {
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: var(--muted);
+  margin-top: 8px;
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+}
+
+.event-time {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.9vw, 20px);
+  color: var(--text);
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+.dua {
+  font-family: var(--font-serif);
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--text);
+  line-height: 2;
+  font-style: italic;
+}
+
+/* Location button */
+.location-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 28px;
+  padding: 16px 44px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.4vw, 14px);
+  letter-spacing: 2.5px;
+  color: var(--white);
+  background: linear-gradient(145deg, #a23535 0%, var(--cover-bg) 60%, #5a1818 100%);
+  box-shadow: 0 10px 30px rgba(125, 42, 42, 0.4);
+  transition: transform 0.25s var(--open-ease);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.location-btn svg {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.location-sub {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-style: italic;
+  opacity: 0.8;
+  font-variant: normal;
+}
+
+.location-btn:hover {
+  transform: translate3d(0, -3px, 0) scale(1.02);
+}
+
+/* Scroll reveal for invitation sections */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* -------------------------------------------------------------
+   10 COUNTDOWN
+------------------------------------------------------------- */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
+  margin-top: 28px;
+}
+
+.countdown-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: clamp(54px, 8vw, 72px);
+  padding: clamp(12px, 2vw, 18px) clamp(8px, 1.5vw, 14px);
+  border: 1px solid rgba(201, 161, 74, 0.5);
+  border-radius: 10px;
+  background: rgba(255, 252, 245, 0.72);
+  box-shadow: 0 4px 16px rgba(160, 100, 30, 0.1);
+}
+
+.countdown-box span {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.2vw, 36px);
+  color: var(--text);
+  line-height: 1;
+}
+
+.countdown-box small {
+  font-size: clamp(9px, 1.1vw, 12px);
+  letter-spacing: 1.5px;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+}
+
+.countdown--ended {
+  display: none;
+}
+
+.countdown-ended {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vw, 18px);
+  letter-spacing: 2.5px;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 28px;
+  padding: 20px 24px;
+  border: 1px solid rgba(201, 161, 74, 0.45);
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.55), rgba(240, 225, 190, 0.3));
+  line-height: 1.7;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countdown-ended[hidden] {
+  display: none;
+}
+
+.countdown-ended.visible {
+  animation: fadeUpIn 0.8s ease both;
+}
+
+/* -------------------------------------------------------------
+   11 QR CODE
+------------------------------------------------------------- */
+.qr-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-top: 28px;
+}
+
+#qrcode {
+  display: flex;
+  justify-content: center;
+  margin: 14px auto 0;
+}
+
+#qrcode canvas,
+#qrcode img {
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  padding: 8px;
+  background: #fff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------
+   12 FOOTER
+------------------------------------------------------------- */
+.inv-footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.footer-love {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--muted);
+}
+
+.footer-from {
+  font-size: clamp(14px, 1.8vw, 18px);
+  letter-spacing: 4px;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.footer-ornament {
+  width: 140px;
+  margin: 16px auto 0;
+}
+
+/* Floating back-to-cover button */
+.back-btn {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: clamp(11px, 1.2vw, 13px);
+  letter-spacing: 1.5px;
+  color: var(--cover-bg);
+  background: linear-gradient(155deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-dark) 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(201, 161, 74, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, 12px, 0);
+  transition: opacity 0.4s var(--open-ease), transform 0.4s var(--open-ease), visibility 0.4s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.back-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.back-btn:hover {
+  transform: translate3d(0, -3px, 0);
+}
+
+.back-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------
+   13 RESPONSIVE
+------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .cover {
+    padding: 50px 35px;
+  }
+
+  .paper {
+    padding: 50px 36px 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cover {
+    padding: 40px 28px;
+  }
+
+  .paper {
+    padding: 50px 22px 60px;
+  }
+
+  .countdown {
+    gap: 8px;
+  }
+
+  .open-btn {
+    padding: 16px 36px;
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .lantern svg {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+
+  .back-btn {
+    bottom: 18px;
+    left: 18px;
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cover-title {
+    font-size: 32px;
+  }
+
+  .home-name {
+    font-size: 44px;
+  }
+}
+
+/* Pause decorative animations during open/close */
+body.is-transitioning .petal,
+body.is-transitioning .lantern,
+body.is-transitioning .lantern-glow,
+body.is-transitioning .floral,
+body.is-transitioning .open-btn::before,
+body.is-transitioning .tap-arrow {
+  animation-play-state: paused !important;
+}
+
+/* -------------------------------------------------------------
+   14 ANIMATIONS
+------------------------------------------------------------- */
+
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes lanternSwing {
+  0%, 100% { transform: translate3d(-50%, 0, 0) rotate(-3deg); }
+  50%       { transform: translate3d(-50%, 0, 0) rotate(3deg); }
+}
+
+@keyframes lanternGlow {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.7; }
+}
+
+@keyframes floralPulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.7; }
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(var(--petal-spin, 0deg));
+    opacity: 0;
+  }
+  8%  { opacity: 0.75; }
+  50% { transform: translate3d(24px, 50vh, 0) rotate(calc(var(--petal-spin, 0deg) + 160deg)); }
+  92% { opacity: 0.5; }
+  100% {
+    transform: translate3d(-18px, 105vh, 0) rotate(calc(var(--petal-spin, 0deg) + 320deg));
+    opacity: 0;
+  }
+}
+
+@keyframes btnShine {
+  0%   { transform: skewX(-22deg) translate3d(-220%, 0, 0); }
+  55%  { transform: skewX(-22deg) translate3d(380%, 0, 0); }
+  100% { transform: skewX(-22deg) translate3d(380%, 0, 0); }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -6px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover,
+  .invitation {
+    transition-duration: 0.01ms !important;
+  }
+
+  .petal, .lantern, .lantern-glow, .floral,
+  .open-btn::before, .tap-arrow, .cover-content {
+    animation: none !important;
+  }
+}
