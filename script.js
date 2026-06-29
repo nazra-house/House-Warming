@@ -9,7 +9,7 @@ const EVENT_CONFIG = {
   day: 23,
   hour: 12,
   minute: 0,
-  mapsUrl: 'https://maps.app.goo.gl/UFE3xFDrgTRHHPBbA',
+  mapsUrl: 'https://maps.app.goo.gl/c5ddMde3hYB7X6Fq5?g_st=ic',
   endedMessage: 'The Housewarming Ceremony Has Begun',
 };
 
